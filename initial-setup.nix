@@ -6,7 +6,7 @@
 
     # TODO, upstream nixos/lib/make-ext4-fs.nix doesnt leave enough inodes
     # resulting in an image that fails the first boot
-    #"${modulesPath}/installer/cd-dvd/channel.nix"
+    "${modulesPath}/installer/cd-dvd/channel.nix"
   ];
   boot = {
     postBootCommands = ''
