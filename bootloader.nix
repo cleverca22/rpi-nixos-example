@@ -16,10 +16,14 @@ in {
   };
   config = lib.mkIf config.boot.loader.rpi.enable {
     system.boot.loader.id = "rpi";
-    system.build.installBootLoader = pkgs.replaceVars ./reinstall-bootloader.sh {
-      crossShell = pkgs.runtimeShell;
-      inherit config_txt;
-      fw = "${pkgs.raspberrypifw}/share/raspberrypi/boot";
+    system.build.installBootLoader = pkgs.replaceVarsWith {
+      isExecutable = true;
+      replacements = {
+        crossShell = pkgs.runtimeShell;
+        fw = "${pkgs.raspberrypifw}/share/raspberrypi/boot";
+        inherit config_txt;
+      };
+      src = ./reinstall-bootloader.sh;
     };
   };
 }

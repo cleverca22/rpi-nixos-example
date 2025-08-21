@@ -1,8 +1,7 @@
-{ pkgs, config, lib, modulesPath, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   imports = [
-    "${modulesPath}/installer/sd-card/sd-image.nix"
     ./bootloader.nix
   ];
   boot = {
